@@ -9,7 +9,9 @@
                     <header class="flex gap-2 mb-4 font-bold">
                         <DragHandle />
                         <input class="title-input bg-transparent focus:bg-white rounded px-1 w-4/5"
-                            @keyup.enter="($event.target as HTMLInputElement).blur()" type="text" v-model="column.title" />
+                            @keyup.enter="($event.target as HTMLInputElement).blur()"
+                            @keydown.backspace="column.title === '' ? columns = columns.filter(c => c.id !== column.id) : null"
+                             type="text" v-model="column.title" />
                     </header>
 
                     <draggable v-model="column.tasks" :group="{ name: 'tasks', pull: alt ? 'clone' : true }" item-key="id"
