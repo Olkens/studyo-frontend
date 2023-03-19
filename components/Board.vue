@@ -1,21 +1,24 @@
 <template>
-    <div>
-        <draggable v-model="columns" group="columns" item-key="id" class="flex gap-4 overflow-x-auto items-start"
-            :animation="250" handle=".drag-handle">
+    <div class="flex items-start overflow-x-auto gap-4">
+        <draggable v-model="columns" group="columns" item-key="id" class="flex gap-4 items-start" :animation="250"
+            handle=".drag-handle">
 
             <template #item="{ element: column }: { element: Column }">
                 <div class="bg-gray-200 column p-5 rounded min-w-[250px]">
 
-                    <header class="flex gap-2">
+                    <header class="flex gap-2 mb-4 font-bold">
                         <DragHandle />
-                        <h2 class="font-bold mb-6">{{ column.title }}</h2>
+                        <input class="title-input bg-transparent focus:bg-white rounded px-1 w-4/5"
+                            @keyup.enter="($event.target as HTMLInputElement).blur()" type="text" v-model="column.title" />
                     </header>
 
-                    <draggable v-model="column.tasks" :group="{name: 'tasks', pull: alt ? 'clone' : true}" item-key="id" :animation="250" handle=".drag-handle">
+                    <draggable v-model="column.tasks" :group="{ name: 'tasks', pull: alt ? 'clone' : true }" item-key="id"
+                        :animation="250" handle=".drag-handle">
 
                         <template #item="{ element: task }: { element: Task }">
                             <div class="flex gap-2">
-                                <BoardTasks :task="task" />
+                                <BoardTask :task="task"
+                                    @delete="column.tasks = column.tasks.filter((t) => t.id !== $event)" />
                             </div>
 
                         </template>
@@ -23,14 +26,15 @@
                     </draggable>
 
                     <footer>
-                        <NewTask @add="column.tasks.push($event)"/>
+                        <NewTask @add="column.tasks.push($event)" />
                     </footer>
 
                 </div>
             </template>
 
         </draggable>
-
+        <button @click="createColumn" class="bg-gray-200 whitespace-nowrap p-2 rounded opacity-50">+ Add Another
+            Column</button>
     </div>
 </template>
 
@@ -69,6 +73,18 @@ const columns = ref<Column[]>([
 ])
 
 const alt = useKeyModifier('Alt')
+
+function createColumn() {
+    const column: Column = {
+        id: nanoid(),
+        title: "",
+        tasks: []
+    }
+    columns.value.push(column);
+    nextTick(() => {
+        (document.querySelector(".column:last-of-type .title-input") as HTMLInputElement).focus()
+    })
+}
 </script>
 
 <style lang="scss" scoped></style>
