@@ -1,14 +1,8 @@
 <template>
-    <div class="flex flex-col ">
-        <li class="logo mb-12 pl-10">
-            <NuxtLink to="/"><Logo/></NuxtLink>
-        </li>
-        <li class="selected-item flex justify-end pr-10 pb-4 pt-4">
-            <NuxtLink to="/dashboard">About</NuxtLink>
-        </li>
-        <li>
-            <NuxtLink to="/taskboard">About</NuxtLink>
-        </li>
+    <div class="flex flex-col pt-10">
+            <NuxtLink class="logo mb-12 pl-10 " to="/"><Logo/></NuxtLink>
+            <CustomLink class="flex justify-end pr-10 pb-4 pt-4 menu-link" to="/">About</CustomLink>
+            <CustomLink class="flex justify-end pr-10 pb-4 pt-4 menu-link" to="/taskboard">About</CustomLink>
     </div>
 </template>
 
@@ -17,11 +11,13 @@
 </script>
 
 <style scoped>
-li {
-    list-style: none;
+
+.menu-link {
+    margin-top: 1rem;
+    color: #fff;
 }
 
-.selected-item {
+.selected-item, .menu-link:hover {
     background: #0496FF;
     border-radius: 0 15px 15px 0;
 }
