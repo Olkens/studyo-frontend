@@ -1,10 +1,12 @@
 <template>
-  <div class="h-[100vh] bg-teal-600 overflow-auto flex flex-row gap-9">
-    <div>
-      <SideBar />
-    </div>
-    <div class="container p-10">
-      <MainView />
+  <div>
+    <div class="h-[100vh] bg-teal-600 overflow-auto flex flex-row gap-9">
+      <div>
+        <SideBar />
+      </div>
+      <div class="container p-10">
+        <MainView />
+      </div>
     </div>
   </div>
 </template>
