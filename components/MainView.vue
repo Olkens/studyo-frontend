@@ -10,8 +10,10 @@
         </div>
         <div class="flex gap-5">
             <div class="basis-3/4 rounded-md p-4 border-2 border-[#BBBBBB]">
+            TODO: KALENDARZ
             </div>
             <div class="basis-1/4 rounded-md p-4 border-2 border-[#BBBBBB]">
+            TODO: Reminders
             </div>
         </div>
     </div>
