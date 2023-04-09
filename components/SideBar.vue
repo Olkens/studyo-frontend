@@ -8,9 +8,6 @@
         <CustomLink class="flex justify-end pr-10 pb-4 pt-4 menu-link" to="/taskboard">Reminders</CustomLink>
         <CustomLink class="flex justify-end pr-10 pb-4 pt-4 menu-link" to="/taskboard">Notes</CustomLink>
         <CustomLink class="flex justify-end pr-10 pb-4 pt-4 menu-link" to="/taskboard">Settigns</CustomLink>
-        <v-btn>
-            Button
-        </v-btn>
     </div>
 </template>
 

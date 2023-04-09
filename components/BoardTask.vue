@@ -1,9 +1,9 @@
 <template>
     <div :title="task.createdAt.toLocaleDateString()"
-        class="task bg-white p-2 pr-4 mb-2 rounded shadow-sm max-w-[250px] flex"
-        @focus="focused = true"
+        class="task bg-white p-2 pr-4 mb-2 rounded shadow-sm max-w-[250px] flex" @focus="focused = true"
         @blur="focused = false" tabindex="0">
-        <DragHandle /> <span>{{ task.title }}</span>
+        <DragHandle /> <span @click="showModal = !showModal">{{ task.title }}</span>
+        <SingleTaskDetails @close="showModal = $event" v-if="showModal" :title="task.title" :ID="task.id"></SingleTaskDetails>
     </div>
 </template>
 
@@ -24,6 +24,9 @@ onKeyStroke("Backspace", (e) => {
         emit("delete", props.task.id)
     }
 })
+
+const showModal = ref(false)
+
 </script>
 
 <style>
@@ -41,7 +44,8 @@ onKeyStroke("Backspace", (e) => {
     @apply absolute top-0 bottom-0 left-0 right-0 bg-slate-300 rounded
 }
 
-.task:focus, .task:focus-visible {
+.task:focus,
+.task:focus-visible {
     @apply outline-gray-700 !important;
     outline: gray auto 1px;
 }
