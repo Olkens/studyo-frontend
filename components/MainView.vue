@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-const title = ref('To jest Twoj dashboard')
+const title = ref('Dashboard')
 </script>
 
 <style scoped></style>
