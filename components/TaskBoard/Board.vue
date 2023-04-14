@@ -28,7 +28,7 @@
                     </draggable>
 
                     <footer>
-                        <NewTask @add="column.tasks.push($event)" />
+                        <TaskBoardNewTask @add="column.tasks.push($event)" />
                     </footer>
 
                 </div>
