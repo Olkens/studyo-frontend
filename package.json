@@ -10,7 +10,8 @@
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^6.6.0",
     "nuxt": "^3.3.1",
-    "nuxt-icon": "^0.3.3"
+    "nuxt-icon": "^0.3.3",
+    "prisma": "^4.13.0"
   },
   "dependencies": {
     "@vueuse/nuxt": "^9.13.0",
