@@ -19,7 +19,7 @@
 
                         <template #item="{ element: task }: { element: Task }">
                             <div class="flex gap-2">
-                                <BoardTask :task="task"
+                                <TaskBoardTask :task="task"
                                     @delete="column.tasks = column.tasks.filter((t) => t.id !== $event)" />
                             </div>
 
