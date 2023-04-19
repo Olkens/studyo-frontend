@@ -14,11 +14,16 @@
     "prisma": "^4.13.0"
   },
   "dependencies": {
+    "@pinia/nuxt": "^0.4.8",
     "@vueuse/nuxt": "^9.13.0",
     "moment": "^2.29.4",
     "nanoid": "^4.0.1",
+    "pinia": "^2.0.34",
     "sass": "^1.60.0",
     "vuedraggable": "^4.1.0",
     "vuetify": "^3.1.12"
+  },
+  "overrides": {
+    "vue": "latest"
   }
 }
