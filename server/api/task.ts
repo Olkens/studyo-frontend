@@ -1,23 +1,23 @@
-import { PrismaClient } from '@prisma/client'
-import { now } from 'moment'
+import prisma from '../../prisma/client'
 
-const prisma = new PrismaClient()
+export default defineEventHandler(async (event) => {
 
-async function main() {
-    await prisma.task.create({
-        data: {
-            title: 'elo cyc',
-            dueDate: new Date()
-        }
-    })
-}
+    const body = await readBody(event)
+    let task = null
 
-main()
-  .then(async () => {
-    await prisma.$disconnect()
-  })
-  .catch(async (e) => {
-    console.error(e)
-    await prisma.$disconnect()
-    process.exit(1)
-  })
+    if (body.title) {
+        task = prisma.task.create({
+            data: {
+                title: body.title
+            }
+        }).then((res)=> {
+            task = res
+        })
+    }
+
+
+
+    return {
+        task: task
+    }
+})
