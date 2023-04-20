@@ -11,7 +11,7 @@
                         <input class="title-input bg-transparent focus:bg-white rounded px-1 w-4/5"
                             @keyup.enter="($event.target as HTMLInputElement).blur()"
                             @keydown.backspace="column.title === '' ? columns = columns.filter(c => c.id !== column.id) : null"
-                             type="text" v-model="column.title" />
+                            type="text" v-model="column.title" />
                     </header>
 
                     <draggable v-model="column.tasks" :group="{ name: 'tasks', pull: alt ? 'clone' : true }" item-key="id"
@@ -28,7 +28,7 @@
                     </draggable>
 
                     <footer>
-                        <TaskBoardNewTask @add="column.tasks.push($event)" />
+                        <TaskBoardNewTask @add="createNewTask($event)" />
                     </footer>
 
                 </div>
@@ -44,6 +44,14 @@
 import type { Column, Task } from '~~/types'
 import { nanoid } from 'nanoid'
 import draggable from "vuedraggable"
+import { useTaskStore } from "../../store/taskStore"
+
+const taskStore = useTaskStore()
+
+async function createNewTask(task: Task) {
+    taskStore.addNewTask(task)
+    console.log('eloo')
+}
 
 const columns = ref<Column[]>([
     {
@@ -87,6 +95,8 @@ function createColumn() {
         (document.querySelector(".column:last-of-type .title-input") as HTMLInputElement).focus()
     })
 }
+
+
 </script>
 
 <style lang="scss" scoped></style>

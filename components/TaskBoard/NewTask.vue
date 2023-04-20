@@ -20,6 +20,9 @@
 <script setup lang="ts">
 import type { Task } from '~~/types'
 import { nanoid } from 'nanoid';
+import { useTaskStore } from '~~/store/taskStore';
+
+const taskStore = useTaskStore()
 
 const emit = defineEmits<{
     (e: "add", payload: Task): void;
@@ -34,7 +37,6 @@ function createTask(e: Event) {
         emit("add", {
             title: title.value.trim(),
             createdAt: new Date(),
-            id: nanoid()
         } as Task)
     }
     title.value = '';

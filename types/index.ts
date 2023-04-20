@@ -7,7 +7,7 @@ export interface Column {
 }
 
 export interface Task {
-    id: ID;
+    id?: ID;
     title: string;
     createdAt: Date;
     dueDate?: Date;
