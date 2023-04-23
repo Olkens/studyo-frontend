@@ -1,6 +1,5 @@
 <template>
   <div
-    :title="task.createdAt.toLocaleDateString()"
     class="task bg-white p-2 pr-4 mb-2 rounded shadow-sm max-w-[250px] flex"
     @focus="focused = true"
     @blur="focused = false"
@@ -27,11 +26,11 @@ const emit = defineEmits<{
 }>();
 
 const focused = ref(false);
-onKeyStroke("Backspace", (e) => {
-  if (focused.value) {
-    emit("delete", props.task.id);
-  }
-});
+// onKeyStroke("Backspace", (e) => {
+//   if (focused.value) {
+//     emit("delete", props.task.id);
+//   }
+// });
 
 const showModal = ref(false);
 </script>

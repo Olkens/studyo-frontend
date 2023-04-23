@@ -30,6 +30,9 @@ const emit = defineEmits<{
 
 const focused = ref(false)
 const title = ref("")
+const props = defineProps<{
+  taskGroupId: any
+}>();
 
 function createTask(e: Event) {
     if (title.value.trim()) {
@@ -37,6 +40,7 @@ function createTask(e: Event) {
         emit("add", {
             title: title.value.trim(),
             createdAt: new Date(),
+            taskGroupId: props.taskGroupId
         } as Task)
     }
     title.value = '';
