@@ -6,9 +6,13 @@ export interface Column {
     tasks: Task[]
 }
 
+export interface TaskGroup {
+    title: string;
+}
+
 export interface Task {
     id?: ID;
-    title: string;
-    createdAt: Date;
+    title?: string;
+    createdAt?: Date;
     dueDate?: Date;
 }
