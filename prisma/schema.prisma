@@ -22,6 +22,7 @@ model Task {
 model TaskGroup {
   id        Int      @id @default(autoincrement())
   title     String
+  enabled   Boolean  @default(true)
   createdAt DateTime @default(now())
   tasks     Task[]
 }
