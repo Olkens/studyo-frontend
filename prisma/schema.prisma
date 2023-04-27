@@ -15,7 +15,7 @@ model Task {
   title       String
   createdAt   DateTime? @default(now())
   dueDate     DateTime?
-  taskGroup   TaskGroup @relation(fields: [taskGroupId], references: [id])
+  taskGroup   TaskGroup? @relation(fields: [taskGroupId], references: [id])
   taskGroupId Int
 }
 

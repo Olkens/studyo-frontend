@@ -9,7 +9,6 @@
                         <input class="title-input bg-transparent focus:bg-white rounded px-1 w-4/5"
                             @keyup.enter=" ($event.target as HTMLInputElement).blur() " type="text" v-model=" column.title " />
                     </header>
-
                     <draggable v-model=" column.tasks " :group=" { name: 'tasks', pull: alt ? 'clone' : true } " item-key="id"
                         :animation=" 250 " handle=".drag-handle">
                         <template #item=" { element: task }: { element: Task } ">
@@ -21,7 +20,7 @@
                     </draggable>
 
                     <footer>
-                        <TaskBoardNewTask @add=" createNewTask($event) " :taskGroupId=" taskGroup.id " />
+                        <TaskBoardNewTask @add=" createNewTask($event) " :taskGroupId="column.id" />
                     </footer>
                 </div>
             </template>
@@ -29,6 +28,8 @@
         <button @click=" createColumn " class="bg-gray-200 whitespace-nowrap p-2 rounded opacity-50">
             + Add Another Column
         </button>
+        <button @click="fetchTasks">wdgwrg</button>
+
     </div>
 </template>
 
@@ -41,25 +42,23 @@ import { useTaskGroupStore } from "../../store/taskGroupStore";
 
 const taskStore = useTaskStore();
 
-const tasks = ref([])
+const {data: taskGroups} = await useFetch(() => "/api/taskGroup/taskGroup" )
 
+// const { data: taskGroups } = computed( () => {
+//     return useFetch(() => "/api/taskGroup/taskGroup" )
+// })
 
-const { data: taskGroups } = await useFetch(() => "/api/taskGroup/taskGroup" )
-const { data: getTasks } = useFetch(`/api/getTasks`)
+const fetchTasks = async () => {
+    console.log('Elo')
+    const {data: hehe} = await useFetch(() => "/api/taskGroup/taskGroup" )
+}
 
-const taskGroup = ref(taskGroups)
-console.log(taskGroups.tasks)
-
-let groupsTasks = ref(taskGroup.tasks)
-
+let taskGroup = ref(taskGroups)
 
 async function createNewTask(task: Task) {
     taskStore.addNewTask(task);
+    await refreshNuxtData()
     console.log("eloo");
-}
-
-function log() {
-    console.log(taskGroups);
 }
 
 // const columns = ref<Column[]>([

@@ -9,7 +9,8 @@ export default defineEventHandler(async (event) => {
         task = prisma.task.create({
             data: {
                 title: body.title,
-                taskGroup: body.taskGroup
+                taskGroup: body.taskGroup,
+                taskGroupId: body.taskGroupId
             }
         }).then((res)=> {
             task = res
